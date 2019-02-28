@@ -36,6 +36,17 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
     private int visiblenum;//合拢后显示的个数，默认等于行个数，表示只显示一行
     List<itemModel> ncData;//不可改变的数据
 
+    private setOnItemClicklistener listener;
+
+
+    public interface setOnItemClicklistener {
+        void onItemListener(int position, View v, itemModel itemmodel);
+    }
+
+    public shrinkcategoryAdapter setOnclicklistener(setOnItemClicklistener listener) {
+        this.listener = listener;
+        return this;
+    }
 
     //设置你自己的子布局的Id
     public shrinkcategoryAdapter setItemView(int childLayoutId, int childtvId, int childbtnId, int childId) {
@@ -212,7 +223,29 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
             ((ViewHolder) viewHolder).item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, "点击了第" + i + "个", Toast.LENGTH_SHORT).show();
+                    int oindex = 0;
+                    for (int j = 0; j < ncData.size(); j++) {
+                        itemModel ncmmodel = ncData.get(j);
+                        if (ncmmodel == mData.get(i)) {
+                            break;
+                        }
+                        oindex++;
+                    }
+                    listener.onItemListener(oindex, v, mData.get(i));
+                }
+            });
+            ((ViewHolder) viewHolder).item_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int oindex = 0;
+                    for (int j = 0; j < ncData.size(); j++) {
+                        itemModel ncmmodel = ncData.get(j);
+                        if (ncmmodel == mData.get(i)) {
+                            break;
+                        }
+                        oindex++;
+                    }
+                    listener.onItemListener(oindex, v, mData.get(i));
                 }
             });
         }
@@ -237,7 +270,11 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
                 }
             }
         });
+    }
 
+    @Override
+    public void setHasStableIds(boolean hasStableIds) {
+        super.setHasStableIds(true);
     }
 
     @Override

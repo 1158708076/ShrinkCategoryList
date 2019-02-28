@@ -6,6 +6,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.yyzm.shrinkcategoryrecycleview.itemModel;
 import com.yyzm.shrinkcategoryrecycleview.shrinkcategoryAdapter;
@@ -22,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayoutManager mLayoutManager;
     shrinkcategoryAdapter adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +33,12 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new GridLayoutManager(this, 4, LinearLayoutManager.VERTICAL, false);
         list.setLayoutManager(mLayoutManager);
         adapter = new shrinkcategoryAdapter(this, mData);
-        adapter.setColumNum(4).setVisiblenum(4);
-        adapter.setHasStableIds(true);
+        adapter.setColumNum(4).setVisiblenum(4).setOnclicklistener(new shrinkcategoryAdapter.setOnItemClicklistener() {
+            @Override
+            public void onItemListener(int position, View v, itemModel itemmodel) {
+                Toast.makeText(MainActivity.this, "点击了第" + position + "个，名字为：" + itemmodel.getWord(), Toast.LENGTH_SHORT).show();
+            }
+        });
         list.setAdapter(adapter);
     }
 
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         //对item的数据进行初始化
         for (int i = 0; i < 10; i++) {
             itemModel im = new itemModel();
-            im.setWord("item");
+            im.setWord("item" + i);
             im.setTag("历史");
             im.setDrawableid(R.drawable.ms);
             im.setSingleline(2);
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 7; i++) {
             itemModel im = new itemModel();
-            im.setWord("item");
+            im.setWord("item" + 9 + i);
             im.setTag("现在");
             im.setDrawableid(R.drawable.ms);
             im.setSingleline(2);
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < 7; i++) {
             itemModel im = new itemModel();
-            im.setWord("item");
+            im.setWord("item" + 16 + i);
             im.setTag("测试");
             im.setDrawableid(R.drawable.ms);
             im.setSingleline(2);
