@@ -14,14 +14,13 @@ import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+
 /**
- *@作者 11587
- *@描述 shrinkcategoryAdapter 自动分类折叠适配器
- *@创建时间 2019/2/28 22:49
- *@反射小知识：
- * getFields() 获取所有public字段,包括父类字段
+ * @作者 11587
+ * @描述 shrinkcategoryAdapter 自动分类折叠适配器
+ * @创建时间 2019/2/28 22:49
+ * @反射小知识： getFields() 获取所有public字段,包括父类字段
  * getDeclaredFields()	获取所有字段,public和protected和private,但是不包括父类字段
  */
 public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -237,7 +236,9 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
                         }
                         oindex++;
                     }
-                    listener.onItemListener(oindex, v, mData.get(i));
+                    if (listener != null) {
+                        listener.onItemListener(oindex, v, mData.get(i));
+                    }
                 }
             });
             ((ViewHolder) viewHolder).item_btn.setOnClickListener(new View.OnClickListener() {
@@ -251,7 +252,9 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
                         }
                         oindex++;
                     }
-                    listener.onItemListener(oindex, v, mData.get(i));
+                    if (listener != null) {
+                        listener.onItemListener(oindex, v, mData.get(i));
+                    }
                 }
             });
         }
