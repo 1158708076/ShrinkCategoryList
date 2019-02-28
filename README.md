@@ -12,7 +12,7 @@ allprojects {
 
 2、在模块的 gradle里添加
 dependencies {
-	        implementation 'com.github.1158708076:ShrinkCategoryList:v1.1'
+	        implementation 'com.github.1158708076:ShrinkCategoryList:v1.2'
 	}
 # 在实例中使用：
 1、布局为recycleview
@@ -20,6 +20,7 @@ dependencies {
 2、适配器使用shrinkcategoryAdapter
 
 3、大概需要设置这些东西：
+
 	mLayoutManager = new MyGridLayoutManager(getContext(), 4, LinearLayoutManager.VERTICAL, false);
         mLayoutManager.setScrollEnabled(false);//防止scrollview和recycleview都滚动造成混乱
         list.setLayoutManager(mLayoutManager);
