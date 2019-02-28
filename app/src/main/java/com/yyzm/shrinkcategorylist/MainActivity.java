@@ -20,7 +20,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView list;
-    private List<itemModel> mData = new ArrayList<>();
+    private List<childModel> mData = new ArrayList<>();
     LinearLayoutManager mLayoutManager;
     shrinkcategoryAdapter adapter;
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private void setData() {
         //对item的数据进行初始化
         for (int i = 0; i < 10; i++) {
-            itemModel im = new itemModel();
+            childModel im = new childModel();
             im.setWord("item" + i);
             im.setTag("历史");
             im.setDrawableid(R.drawable.ms);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 7; i++) {
-            itemModel im = new itemModel();
+            childModel im = new childModel();
             im.setWord("item" + 9 + i);
             im.setTag("现在");
             im.setDrawableid(R.drawable.ms);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < 7; i++) {
-            itemModel im = new itemModel();
+            childModel im = new childModel();
             im.setWord("item" + 16 + i);
             im.setTag("测试");
             im.setDrawableid(R.drawable.ms);

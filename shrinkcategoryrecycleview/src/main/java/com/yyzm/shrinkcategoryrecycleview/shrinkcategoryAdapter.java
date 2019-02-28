@@ -16,7 +16,14 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ *@作者 11587
+ *@描述 shrinkcategoryAdapter 自动分类折叠适配器
+ *@创建时间 2019/2/28 22:49
+ *@反射小知识：
+ * getFields() 获取所有public字段,包括父类字段
+ * getDeclaredFields()	获取所有字段,public和protected和private,但是不包括父类字段
+ */
 public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private LayoutInflater mInflater;
@@ -68,7 +75,6 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
 
     public shrinkcategoryAdapter(Context mContext, List<T> mData) {
         this.mContext = mContext;
-        this.mData = (List<itemModel>) mData;
         reSetData(mData);
     }
 
@@ -95,13 +101,13 @@ public class shrinkcategoryAdapter<T> extends RecyclerView.Adapter<RecyclerView.
             Class<?> cla = null;
             try {
                 cla = Class.forName(b[1]);
-                Field mStudentField = cla.getDeclaredField("word");
+                Field mStudentField = cla.getField("word");
                 String word = (String) mStudentField.get(model);
-                mStudentField = cla.getDeclaredField("tag");
+                mStudentField = cla.getField("tag");
                 String tag = (String) mStudentField.get(model);
-                mStudentField = cla.getDeclaredField("drawableid");
+                mStudentField = cla.getField("drawableid");
                 int drawableid = (Integer) mStudentField.get(model);
-                mStudentField = cla.getDeclaredField("singleline");
+                mStudentField = cla.getField("singleline");
                 int singleline = (Integer) mStudentField.get(model);
                 itemModel cm = new itemModel();
                 if (!tag.equals(lastTag) && visitTitle) {
