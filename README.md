@@ -12,7 +12,7 @@ allprojects {
 
 2、在模块的 gradle里添加
 dependencies {
-	        implementation 'com.github.1158708076:ShrinkCategoryList:v1.2'
+	        implementation 'com.github.1158708076:ShrinkCategoryList:v1.3'
 	}
 # 在实例中使用：
 1、布局为recycleview
