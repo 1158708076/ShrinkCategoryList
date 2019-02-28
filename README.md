@@ -16,7 +16,9 @@ dependencies {
 	}
 # 在实例中使用：
 1、布局为recycleview
+
 2、适配器使用shrinkcategoryAdapter
+
 3、大概需要设置这些东西：
 	mLayoutManager = new MyGridLayoutManager(getContext(), 4, LinearLayoutManager.VERTICAL, false);
         mLayoutManager.setScrollEnabled(false);//防止scrollview和recycleview都滚动造成混乱
@@ -24,4 +26,5 @@ dependencies {
         scadapter = new shrinkcategoryAdapter(getContext(), mData);
         scadapter.setColumNum(4).setVisiblenum(4);
         list.setAdapter(scadapter);
+	
 4、注：使用对象必须继承库内的itemModel
